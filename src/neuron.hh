@@ -22,6 +22,16 @@ namespace NeuralNetwork
 
     void activate() { val = (1 / (1 + exp(-sum))); }
 
+    double get_delta() { return delta; }
+
+    double get_val() { return val; }
+
+    void reset_sum() { sum = 0; }
+
+    void add_sum(double f) { sum += f; }
+
+    double get_synapses(size_t i) { return synapses[i]; }
+
 
   private:
 
