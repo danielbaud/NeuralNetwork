@@ -20,7 +20,7 @@ namespace NeuralNetwork
 	synapses[i] = ((double)rand() / RAND_MAX) * 2 * SYN - SYN;
     }
 
-    activate() { val = (1 / (1 + exp(-sum))); }
+    void activate() { val = (1 / (1 + exp(-sum))); }
 
 
   private:
