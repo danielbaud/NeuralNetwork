@@ -1,20 +1,23 @@
 #include <vector>
 #include <stdlib.h>
 
-class Neuron
+namespace NeuralNetwork
 {
-public:
+  class Neuron
+  {
+  public:
 
-  Neuron(size_t nb_synapses)
-  { 
-    synapses = std::vector<double>(nb_synapses);
-  }
+    Neuron(size_t nb_synapses)
+    { 
+      synapses = std::vector<double>(nb_synapses);
+    }
 
 
-private:
+  private:
 
-  double delta;
-  double sum;
-  double val;
-  std::vector<double> synapses;
-};
+    double delta;
+    double sum;
+    double val;
+    std::vector<double> synapses;
+  };
+}
