@@ -18,12 +18,12 @@ void Neuron::activate()
   val = sigmoid(val);
 }
 
-double Neuron::get_delta()
+double Neuron::get_delta() const
 {
   return delta;
 }
 
-double Neuron::get_val()
+double Neuron::get_val() const
 {
   return val;
 }

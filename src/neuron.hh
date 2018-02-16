@@ -15,8 +15,8 @@ namespace NeuralNetwork
 
     void activate();
 
-    double get_delta();
-    double get_val();
+    double get_delta() const;
+    double get_val() const;
 
     void set_delta(double x);
     void set_val(double x);
