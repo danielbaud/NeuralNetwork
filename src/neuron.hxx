@@ -37,3 +37,13 @@ void Neuron::set_val(double x)
 {
   val = x;
 }
+
+void Neuron::add_val(double x)
+{
+  val += x;
+}
+
+void Neuron::add_delta(double x)
+{
+  delta += x;
+}
