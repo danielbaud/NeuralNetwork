@@ -38,6 +38,11 @@ void Neuron::set_val(double x)
   val = x;
 }
 
+void Neuron::add_syn(size_t i, double x)
+{
+  synapses[i] += x;
+}
+
 void Neuron::add_val(double x)
 {
   val += x;

@@ -2,6 +2,7 @@
 #include <vector>
 #include <cstdlib>
 #include <cmath>
+#include <ctime>
 
 #define SYN 10
 
@@ -23,8 +24,10 @@ namespace NeuralNetwork
 
     void add_delta(double x);
     void add_val(double x);
+    void add_syn(size_t i, double x);
     double operator[](size_t i) { return synapses[i]; }
     
+    size_t size() const { return synapses.size(); }
 
   private:
 
