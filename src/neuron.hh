@@ -11,34 +11,26 @@ namespace NeuralNetwork
   {
   public:
 
-    Neuron(size_t nb_synapses)
-    : delta(0)
-    , sum(0)
-    , val(0)
-    { 
-      synapses = std::vector<double>(nb_synapses);
-      for (size_t i = 0; i < nb_synapses; ++i)
-	synapses[i] = ((double)rand() / RAND_MAX) * 2 * SYN - SYN;
-    }
+    Neuron(size_t nb_synapses);
 
-    void activate() { val = (1 / (1 + exp(-sum))); }
+    void activate();
 
-    double get_delta() { return delta; }
+    double get_delta();
+    double get_val();
 
-    double get_val() { return val; }
+    void set_delta(double x);
+    void set_val(double x);
 
-    void reset_sum() { sum = 0; }
-
-    void add_sum(double f) { sum += f; }
-
-    double get_synapses(size_t i) { return synapses[i]; }
-
+    void add_delta(double x);
+    void add_val(double x);
+    double operator[](size_t i) { return synapses[i]; }
+    
 
   private:
 
     double delta;
-    double sum;
     double val;
     std::vector<double> synapses;
   };
+  #include "neuron.hxx"
 }
