@@ -18,12 +18,13 @@ namespace NeuralNetwork
 
     double get_delta() const;
     double get_val() const;
+    double get_sum() const;
 
     void set_delta(double x);
     void set_val(double x);
 
     void add_delta(double x);
-    void add_val(double x);
+    void add_sum(double x);
     void add_syn(size_t i, double x);
     double operator[](size_t i) { return synapses[i]; }
     
@@ -33,6 +34,7 @@ namespace NeuralNetwork
 
     double delta;
     double val;
+    double sum;
     std::vector<double> synapses;
   };
   #include "neuron.hxx"

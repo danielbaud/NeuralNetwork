@@ -1,6 +1,6 @@
 #include "neuron.hh"
 
-Neuron::Neuron(size_t nb_synapses) : delta(0), val(0)
+Neuron::Neuron(size_t nb_synapses) : delta(0), val(0), sum(0)
 {
   synapses = std::vector<double>(nb_synapses);
   for (size_t i = 0; i < nb_synapses; ++i)
@@ -15,7 +15,7 @@ double sigmoid(double x)
 
 void Neuron::activate()
 {
-  val = sigmoid(val);
+  val = sigmoid(sum);
 }
 
 double Neuron::get_delta() const
@@ -26,6 +26,11 @@ double Neuron::get_delta() const
 double Neuron::get_val() const
 {
   return val;
+}
+
+double Neuron::get_sum() const
+{
+  return sum;
 }
 
 void Neuron::set_delta(double x)
@@ -43,9 +48,9 @@ void Neuron::add_syn(size_t i, double x)
   synapses[i] += x;
 }
 
-void Neuron::add_val(double x)
+void Neuron::add_sum(double x)
 {
-  val += x;
+  sum += x;
 }
 
 void Neuron::add_delta(double x)
