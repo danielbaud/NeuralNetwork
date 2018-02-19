@@ -28,7 +28,7 @@ void Layer::updateE(const Layer& next)
 
 double sigmoid_d(double x)
 {
-  return sigmoid(x) * (1 - sigmoid(x));
+  return (exp(-x) / ((1 + exp(-x)) * (1 + exp(-x))));
 }
 
 void Layer::updateS(const Layer& prev)

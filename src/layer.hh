@@ -20,7 +20,8 @@ namespace NeuralNetwork
 
     size_t size() const { return neurons.size(); }
   
-    Neuron operator[](size_t i) const { return neurons[i]; }
+    Neuron& operator[](size_t i) { return neurons[i]; }
+    const Neuron& operator[](size_t i) const { return neurons[i]; }
 
   private:
 
