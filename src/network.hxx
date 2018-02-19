@@ -28,7 +28,7 @@ void Network::learn(std::vector<double> input, std::vector<double> target)
 {
   for (size_t i = 0; i < layers[0].size(); ++i)
   {
-    layers[0][i].set_val(input[i]);
+    layers[0][i].set_sum(input[i]);
     layers[0][i].activate();
   }
   forward();
@@ -41,8 +41,22 @@ void Network::print()
   {
     for (size_t j = 0; j < layers[i].size(); ++j)
     {
-      std::cout << layers[i][j].get_val() << " ";
+      std::cout << layers[i][j];
     }
     std::cout << std::endl;
   }
+}
+
+double Network::error()
+{
+  double er = 0;
+  size_t t = layers.size() - 1;
+  for (size_t i = 0; i < layers[t].size(); ++i)
+  {
+    if (layers[t][i].get_delta() > 0)
+      er += layers[t][i].get_delta();
+    else
+      er -= layers[t][i].get_delta();
+  }
+  return er;
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "layer.hh"
 #include <iostream>
+#include <cmath>
 
 namespace NeuralNetwork
 {
@@ -18,6 +19,8 @@ namespace NeuralNetwork
     void learn(std::vector<double> input, std::vector<double> target);
 
     void print();
+
+    double error();
 
     Layer operator[](size_t i) { return layers[i]; }
 
