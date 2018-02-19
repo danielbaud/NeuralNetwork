@@ -15,45 +15,57 @@ double sigmoid(double x)
 
 void Neuron::activate()
 {
-  val = sigmoid(sum);
+  this->val = sigmoid(sum);
 }
 
 double Neuron::get_delta() const
 {
-  return delta;
+  return this->delta;
 }
 
 double Neuron::get_val() const
 {
-  return val;
+  return this->val;
 }
 
 double Neuron::get_sum() const
 {
-  return sum;
+  return this->sum;
 }
 
 void Neuron::set_delta(double x)
 {
-  delta = x;
+  this->delta = x;
 }
 
 void Neuron::set_val(double x)
 {
-  val = x;
+  this->val = x;
+}
+
+void Neuron::set_sum(double x)
+{
+  this->sum = x;
 }
 
 void Neuron::add_syn(size_t i, double x)
 {
-  synapses[i] += x;
+  this->synapses[i] += x;
 }
 
 void Neuron::add_sum(double x)
 {
-  sum += x;
+  this->sum += x;
 }
 
 void Neuron::add_delta(double x)
 {
-  delta += x;
+  this->delta += x;
+}
+
+std::ostream& operator<<(std::ostream& out, Neuron n)
+{
+  out << "[[sum: "<< n.sum << ", val: " << n.val << ", delta: " 
+    << n.delta << "]] ";
+  return out;
 }
