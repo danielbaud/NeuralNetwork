@@ -20,14 +20,29 @@ void Network::backPropagate(std::vector<double> target)
     layers[l][i].set_delta(target[i] - layers[l][i].get_val());
   for (size_t i = l; i > 0; --i)
     layers[i-1].updateE(layers[i]);
-  for (size_t i = 0; i < layers.size(); ++i)
+  for (size_t i = 0; i < layers.size() - 1 ; ++i)
     layers[i+1].updateS(layers[i]);
 }
 
 void Network::learn(std::vector<double> input, std::vector<double> target)
 {
   for (size_t i = 0; i < layers[0].size(); ++i)
+  {
     layers[0][i].set_val(input[i]);
+    layers[0][i].activate();
+  }
   forward();
   backPropagate(target);
+}
+
+void Network::print()
+{
+  for (size_t i = 0; i < layers.size(); ++i)
+  {
+    for (size_t j = 0; j < layers[i].size(); ++j)
+    {
+      std::cout << layers[i][j].get_val() << " ";
+    }
+    std::cout << std::endl;
+  }
 }

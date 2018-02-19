@@ -1,5 +1,6 @@
 #pragma once
 #include "layer.hh"
+#include <iostream>
 
 namespace NeuralNetwork
 {
@@ -15,6 +16,8 @@ namespace NeuralNetwork
     void backPropagate(std::vector<double> target);
 
     void learn(std::vector<double> input, std::vector<double> target);
+
+    void print();
 
     Layer operator[](size_t i) { return layers[i]; }
 
