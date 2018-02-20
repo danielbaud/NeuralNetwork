@@ -9,6 +9,7 @@ namespace NeuralNetwork
   public:
 
     Network(std::vector<size_t> lsize);
+    Network(const std::string& path);
 
     void forward();
 

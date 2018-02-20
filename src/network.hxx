@@ -7,6 +7,32 @@ Network::Network(std::vector<size_t> lsize)
     layers.push_back(Layer(lsize[i], lsize[i-1]));
 }
 
+Network::Network(const std::string& path)
+{
+  std::ifstream s(path);
+  size_t l = 0;
+  s >> l;
+  layers.push_back(Layer(l, 0));
+  size_t ll = l;
+  s >> l;
+  while (l > 0)
+  {
+    layers.push_back(Layer(l, ll));
+    ll = l;
+    s >> l;
+  }
+  s.get();
+  s.get();
+  for (size_t i = 1; i < layers.size(); ++i)
+    for (size_t j = 0; j < layers[i].size(); ++j)
+      for (size_t k = 0; k < layers[i][j].size(); ++k)
+      {
+	s >> layers[i][j][k];
+	s.get();
+      }
+  s.close();
+}
+
 void Network::forward()
 {
   for (size_t i = 1; i < layers.size(); ++i)
@@ -65,18 +91,11 @@ void Network::save(const std::string& path)
 {
   std::ofstream s(path);
   for (size_t i = 0; i < layers.size(); ++i)
-  {
-    s << "L";
+    s << layers[i].size() << std::endl;
+  s << '0' << std::endl;
+  for (size_t i = 1; i < layers.size(); ++i)
     for (size_t j = 0; j < layers[i].size(); ++j)
-    {
-      s << "N";
       for (size_t k = 0; k < layers[i][j].size(); ++k)
-      {
-	s << "S";
-	s << layers[i][j][k];
-	s << "F";
-      }
-    }
-  }
+	s << "S" << layers[i][j][k];
   s.close();
 }
