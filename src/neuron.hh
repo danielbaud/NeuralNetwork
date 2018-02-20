@@ -27,7 +27,6 @@ namespace NeuralNetwork
 
     void add_delta(double x);
     void add_sum(double x);
-    void add_syn(size_t i, double x);
     double& operator[](size_t i) { return synapses[i]; }
     const double& operator[](size_t i ) const { return synapses[i]; }
     
