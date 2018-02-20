@@ -2,9 +2,14 @@
 
 Neuron::Neuron(size_t nb_synapses) : delta(0), val(0), sum(0)
 {
+  srand(time(NULL));
   synapses = std::vector<double>(nb_synapses);
   for (size_t i = 0; i < nb_synapses; ++i)
-    synapses[i] = ((double)rand() / RAND_MAX) * 2 * SYN - SYN;
+  {
+    synapses[i] = ((double)rand() / RAND_MAX) * SYN;
+    if (i%2 == 0)
+      synapses[i] *= -1;
+  }
 }
 
 
@@ -46,11 +51,6 @@ void Neuron::set_val(double x)
 void Neuron::set_sum(double x)
 {
   this->sum = x;
-}
-
-void Neuron::add_syn(size_t i, double x)
-{
-  this->synapses[i] += x;
 }
 
 void Neuron::add_sum(double x)
