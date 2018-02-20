@@ -26,11 +26,6 @@ void Layer::updateE(const Layer& next)
   }
 }
 
-double sigmoid_d(double x)
-{
-  return (exp(-x) / ((1 + exp(-x)) * (1 + exp(-x))));
-}
-
 void Layer::updateS(const Layer& prev)
 {
   for (size_t i = 0; i < neurons.size(); ++i)
