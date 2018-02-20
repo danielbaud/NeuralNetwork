@@ -7,6 +7,7 @@
 
 #define SYN 0.5
 #define SIG 0.01
+#define ATOM 0.5
 
 namespace NeuralNetwork
 {
