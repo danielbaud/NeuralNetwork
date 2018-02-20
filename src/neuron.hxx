@@ -15,7 +15,13 @@ Neuron::Neuron(size_t nb_synapses) : delta(0), val(0), sum(0)
 
 double sigmoid(double x)
 {
-  return (1 / (1 + exp(-x)));
+  return (1 / (1 + exp(-x * SIG)));
+}
+
+double sigmoid_d(double x)
+{
+  double y = SIG * x;
+  return ((SIG * exp(-y)) / ((1 + exp(-y)) * (1 + exp(-y))));
 }
 
 void Neuron::activate()
