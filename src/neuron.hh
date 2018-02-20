@@ -6,7 +6,7 @@
 #include <ctime>
 
 #define SYN 0.5
-#define SIG 1
+#define SIG 0.01
 
 namespace NeuralNetwork
 {
