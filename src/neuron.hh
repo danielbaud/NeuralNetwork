@@ -1,12 +1,13 @@
 #pragma once
 #include <string>
+#include <fstream>
 #include <vector>
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
 #include <ctime>
 
-#define SYN 0.5
+#define SYN 1
 #define SIG 0.01
 #define ATOM 0.5
 

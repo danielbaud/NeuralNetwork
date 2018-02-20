@@ -20,6 +20,8 @@ namespace NeuralNetwork
 
     double error();
 
+    void save(const std::string& path);
+
     Layer operator[](size_t i) { return layers[i]; }
 
   private:

@@ -60,3 +60,23 @@ double Network::error()
   }
   return er;
 }
+
+void Network::save(const std::string& path)
+{
+  std::ofstream s(path);
+  for (size_t i = 0; i < layers.size(); ++i)
+  {
+    s << "L";
+    for (size_t j = 0; j < layers[i].size(); ++j)
+    {
+      s << "N";
+      for (size_t k = 0; k < layers[i][j].size(); ++k)
+      {
+	s << "S";
+	s << layers[i][j][k];
+	s << "F";
+      }
+    }
+  }
+  s.close();
+}
