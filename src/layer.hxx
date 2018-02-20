@@ -35,6 +35,6 @@ void Layer::updateS(const Layer& prev)
 {
   for (size_t i = 0; i < neurons.size(); ++i)
     for (size_t j = 0; j < prev.size(); ++j)
-      neurons[i].add_syn(j, neurons[i].get_delta() * 0.1 * prev[j].get_val()
-	  * sigmoid_d(neurons[i].get_sum()));
+      neurons[i][j] += neurons[i].get_delta() * 0.1 * prev[j].get_val()
+        * sigmoid_d(neurons[i].get_sum());
 }
