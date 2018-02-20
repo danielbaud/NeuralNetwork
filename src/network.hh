@@ -1,7 +1,5 @@
 #pragma once
 #include "layer.hh"
-#include <iostream>
-#include <cmath>
 
 namespace NeuralNetwork
 {
