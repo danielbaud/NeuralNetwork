@@ -1,11 +1,22 @@
 #pragma once
+
+// Used in implementation
 #include <string>
-#include <fstream>
 #include <vector>
+
+// Saving/Loading a network
+#include <fstream>
+#include <cstdio>
+
+// Printing
 #include <iostream>
+
+// Random
 #include <cstdlib>
-#include <cmath>
 #include <ctime>
+
+// Exponential function for Sigmoid
+#include <cmath>
 
 #define SYN 1
 #define SIG 0.01
