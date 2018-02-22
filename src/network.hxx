@@ -34,6 +34,18 @@ void Network::forward()
     layers[i].update(layers[i-1]);
 }
 
+std::vector<double> Network::result(std::vector<double> input)
+{
+  for (size_t i = 0; i < layers[0].size(); ++i)
+    layers[0][i].set_val(input[i]);
+  forward();
+  std::vector<double> res;
+  size_t t = layers.size()-1;
+  for (size_t i = 0; i < layers[t].size(); ++i)
+    res.push_back(layers[t][i].get_val());
+  return res;
+}
+
 void Network::backPropagate(std::vector<double> target)
 {
   size_t l = layers.size() - 1;
@@ -48,10 +60,7 @@ void Network::backPropagate(std::vector<double> target)
 void Network::learn(std::vector<double> input, std::vector<double> target)
 {
   for (size_t i = 0; i < layers[0].size(); ++i)
-  {
-    layers[0][i].set_sum(input[i]);
-    layers[0][i].activate();
-  }
+    layers[0][i].set_val(input[i]);
   forward();
   backPropagate(target);
 }

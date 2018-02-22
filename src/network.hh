@@ -13,6 +13,8 @@ namespace NeuralNetwork
 
     void forward();
 
+    std::vector<double> result(std::vector<double> input);
+
     void backPropagate(std::vector<double> target);
 
     void learn(std::vector<double> input, std::vector<double> target);
