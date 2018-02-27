@@ -1,11 +1,16 @@
 CXX = g++
 CXXFLAGS = -Werror -Wextra -Wall -pedantic -std=c++17
 
-SRC = /* FIXME */
+TRASH = run create
 
-TRASH = /* FIXME */
+all: run
 
-all: /* FIXME */
+run:
+	$(CXX) $(CXXFLAGS) -o run src/run_network.cc
 
+create:
+	$(CXX) $(CXXFLAGS) -o create src/create_network.cc
+
+.PHONY: clean
 clean:
-	$(RM) $(TRASH)
+	$(RM) $(TRASH) $(RUN) $(CREATE)
