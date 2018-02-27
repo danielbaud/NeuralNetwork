@@ -10,6 +10,12 @@ Network::Network(std::vector<size_t> lsize)
 Network::Network(const std::string& path)
 {
   std::ifstream s(path);
+  if (!s.is_open())
+  {
+    std::cerr << "Unable to find file " << path
+              << ". Stopping program" << std::endl;
+    exit(2);
+  }
   size_t l = 0;
   s >> l;
   layers.push_back(Layer(l, 0));
