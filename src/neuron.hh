@@ -19,7 +19,7 @@
 #include <cmath>
 
 #define SYN 1
-#define SIG 0.01
+#define SIG 1
 #define ATOM 0.5
 
 namespace NeuralNetwork
