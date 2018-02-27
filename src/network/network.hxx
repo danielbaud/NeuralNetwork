@@ -12,7 +12,7 @@ Network::Network(const std::string& path)
   std::ifstream s(path);
   if (!s.is_open())
   {
-    std::cerr << "Unable to find file " << path
+    std::cerr << "Unable to find ANN " << path
               << ". Stopping program" << std::endl;
     exit(2);
   }
