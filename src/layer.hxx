@@ -9,6 +9,7 @@ void Layer::update(const Layer& prev)
 {
   for (size_t i = 0; i < neurons.size(); ++i)
   {
+    neurons[i].set_sum(0);
     neurons[i].set_val(0);
     for (size_t j = 0; j < prev.size(); ++j)
       neurons[i].add_sum(prev[j].get_val()*neurons[i][j]);
