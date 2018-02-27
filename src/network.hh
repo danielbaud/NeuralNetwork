@@ -10,6 +10,7 @@ namespace NeuralNetwork
 
     Network(std::vector<size_t> lsize);
     Network(const std::string& path);
+    Network(std::initializer_list<size_t> l);
 
     void forward();
 

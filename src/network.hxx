@@ -28,6 +28,16 @@ Network::Network(const std::string& path)
   s.close();
 }
 
+Network::Network(std::initializer_list<size_t> l)
+{
+  size_t j = 0;
+  for (auto i : l)
+  {
+    layers.push_back(Layer(i, j));
+    j = i;
+  }
+}
+
 void Network::forward()
 {
   for (size_t i = 1; i < layers.size(); ++i)
@@ -53,7 +63,7 @@ void Network::backPropagate(std::vector<double> target)
     layers[l][i].set_delta(target[i] - layers[l][i].get_val());
   for (size_t i = l; i > 0; --i)
     layers[i-1].updateE(layers[i]);
-  for (size_t i = 0; i < layers.size() - 1 ; ++i)
+  for (size_t i = 0; i < l; ++i)
     layers[i+1].updateS(layers[i]);
 }
 
