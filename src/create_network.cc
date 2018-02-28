@@ -1,5 +1,15 @@
 #include "network/network.hh"
-#define ERROR 0.1
+#define ERROR 0.01
+
+void print(std::vector<std::vector<double>> v)
+{
+  for (size_t i = 0; i < v.size(); ++i)
+  {
+    for (size_t j = 0; j < v[i].size(); ++j)
+      std::cout << v[i][j] << " ";
+    std::cout << std::endl;
+  }
+}
 
 
 bool ok(std::vector<double> v)
@@ -83,14 +93,19 @@ int main(int argc, char **argv)
     in.push_back(inp);
     std::vector<double> outp(last);
     for (size_t k = 0; k < last; ++k)
-      f >>outp[k];
+      f >> outp[k];
     out.push_back(outp);
     ++cpt;
   }
   --cpt;
   f.close();
 
+  print(in);
+  std::cout << "----------" << std::endl;
+  print(out);
+
   // Training the network
+  size_t pr = 0;
   std::vector<double> errors(cpt);
   do
   {
@@ -98,9 +113,12 @@ int main(int argc, char **argv)
     {
       N.learn(in[k], out[k]);
       errors[k] = N.error();
-      std::cout << k << "|" << errors[k] << " ";
+      if (!(pr % 1000))
+        std::cout << k << "|" << errors[k] << " ";
     }
-    std::cout << std::endl;
+    if (!(pr % 1000))
+      std::cout << std::endl;
+    ++pr;
   } while (!ok(errors));
 
   N.save(ann);
