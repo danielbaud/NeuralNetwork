@@ -2,25 +2,7 @@
 
 USAGE:
 	To create a Neural Network, you have to create a config file (*.conf).
-	The config file has to be like this:
-
-	"""
-	name_of_network.ann
-	x1
-	x2
-	..
-	xN
-	0
-	i1(1) i1(2) ... i1(x1) o1(1) o1(2) ... o1(xN)
-	i2(1) i2(2) ... i2(x1) o2(1) o2(2) ... o2(xN)
-	....
-	iK(1) iK(2) ... iK(x1) oK(1) oK(2) ... oK(xK)
-	"""
-
-	x1, x2 ... xN are the number of neurons in each layer, with N being the
-	last layer.
-	iX(Y) are the input of the first layer and oX(Y) are the outputs to find
-	in the last layer when learning.
+	You can see its structure in skel/
 	You can add as many data as you want your network to learn
 
 	Then, just type:
@@ -32,9 +14,16 @@ USAGE:
 		$ make run
 		$ ./run network.ann x1 x2 x3 ... xn
 		          with xI your inputs
+	 	    OR
+
+		$ ./run runfile.rf
+	The structure of a runfile is also in skel/
+
 
 EXAMPLE:
-	there is an example of a config file and usage of the program:
+
+	There is an example of a config file and runfile and usage of the
+	program:
 
 	xor.conf	xor.ann
 			2
@@ -46,6 +35,13 @@ EXAMPLE:
 			1 0 1
 			1 1 0
 
+	xor.rf		xor.ann
+			0 0
+			0 1
+			1 0
+			1 1
+
+
 	$ make create
 	$ ./create xor.conf
 	0|err0 1|err1 2|err2 3|err3
@@ -54,7 +50,11 @@ EXAMPLE:
 	Network saved at xor.ann
 	$ make run
 	$ ./run xor.ann 0 1
-	0.998423
-
+	0 1  ->  0.998423
+	$ ./run xor.rf
+	0 0  ->  0.007253
+	0 1  ->  0.993621
+	1 0  ->  0.991622
+	1 1  ->  0.006273
 
 ================================================================================
