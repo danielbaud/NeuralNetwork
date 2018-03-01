@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Werror -Wextra -Wall -pedantic -std=c++17
+CXXFLAGS = -Werror -Wextra -Wall -pedantic -std=c++17 -g
 
 TRASH = run create
 
