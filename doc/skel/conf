@@ -1,0 +1,10 @@
+network_location.ann
+layer1.size
+layer2.size
+...
+layerX.size
+0
+input1 input2 ... inputN output1 output2 ... outputN
+input1 input2 ... inputN output1 output2 ... outputN
+...
+input1 input2 ... inputN output1 output2 ... outputN
