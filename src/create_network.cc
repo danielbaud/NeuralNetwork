@@ -1,5 +1,17 @@
 #include "network/network.hh"
+#include <csignal>
 #define ERROR 0.01
+
+static bool stop = false;
+
+void sig(int signal)
+{
+  if (signal == SIGINT)
+    std::cout << "\nProgram received SIGINT";
+  if (signal == SIGTSTP)
+    std::cout << "\nProgram received SIGTSTP";
+  stop = true;
+}
 
 void print(std::vector<std::vector<double>> v)
 {
@@ -105,6 +117,9 @@ int main(int argc, char **argv)
   print(out);
 
   // Training the network
+  std::signal(SIGINT, sig);
+  std::signal(SIGTSTP, sig);
+
   size_t pr = 0;
   std::vector<double> errors(cpt);
   do
@@ -119,9 +134,9 @@ int main(int argc, char **argv)
     if (!(pr % 1000))
       std::cout << std::endl;
     ++pr;
-  } while (!ok(errors));
+  } while (!ok(errors) && !stop);
 
   N.save(ann);
-  std::cout << "Network saved at " << ann << std::endl;
+  std::cout << std::endl << "Network saved at " << ann << std::endl;
   return 0;
 }
