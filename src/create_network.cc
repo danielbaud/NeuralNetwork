@@ -114,7 +114,7 @@ int main(int argc, char **argv)
       N.learn(in[k], out[k]);
       errors[k] = N.error();
       if (!(pr % 1000))
-        std::cout << k << "|" << errors[k] << " ";
+        std::cout << k + 1 << "|" << errors[k] << " ";
     }
     if (!(pr % 1000))
       std::cout << std::endl;
