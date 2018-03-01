@@ -12,7 +12,7 @@ Neuron::Neuron(size_t nb_synapses) : delta(0), val(0), sum(0)
   }
 }
 
-
+/* MATHS FUNCTIONS */
 double sigmoid(double x)
 {
   return (1 / (1 + exp(-x * SIG)));
@@ -24,9 +24,30 @@ double sigmoid_d(double x)
   return ((SIG * exp(-y)) / ((1 + exp(-y)) * (1 + exp(-y))));
 }
 
+double gauss(double x)
+{
+  return exp(-x*x);
+}
+
+double gauss_d(double x)
+{
+  return -2*x*exp(-x*x);
+}
+/* !MATHS FUNCTION */
+
+double activation(double x)
+{
+  return sigmoid(x);
+}
+
+double activation_d(double x)
+{
+  return sigmoid_d(x);
+}
+
 void Neuron::activate()
 {
-  this->val = sigmoid(sum);
+  this->val = activation(sum);
 }
 
 double Neuron::get_delta() const
