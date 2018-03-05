@@ -33,16 +33,26 @@ double gauss_d(double x)
 {
   return -2*x*exp(-x*x);
 }
+
+double nsin(double x)
+{
+  return 0.5*sin(x) + 0.5;
+}
+
+double nsin_d(double x)
+{
+  return 0.5*cos(x);
+}
 /* !MATHS FUNCTION */
 
 double activation(double x)
 {
-  return sigmoid(x);
+  return gauss(x);
 }
 
 double activation_d(double x)
 {
-  return sigmoid_d(x);
+  return gauss_d(x);
 }
 
 void Neuron::activate()
