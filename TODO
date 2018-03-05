@@ -1,0 +1,15 @@
+=== TODO ===
+
+implement bias
+test which activation function works the best
+
+
+=== DONE ===
+
+neuron
+layer
+network
+create rule
+run rule
+simple creation file
+simple running file
