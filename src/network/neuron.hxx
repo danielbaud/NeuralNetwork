@@ -47,12 +47,12 @@ double nsin_d(double x)
 
 double activation(double x)
 {
-  return gauss(x);
+  return nsin(x);
 }
 
 double activation_d(double x)
 {
-  return gauss_d(x);
+  return nsin_d(x);
 }
 
 void Neuron::activate()
