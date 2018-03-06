@@ -10,7 +10,8 @@ int main(int argc, char **argv)
 {
   if (argc == 1)
   {
-    std::cerr << "Usage: ./run runfile  OR  ./run network.ann x1 x2 .. xn" 
+    std::cerr << "Usage: " << argv[0]
+              << " runfile  OR  " << argv[0] << " network.ann x1 x2 .. xn"
               << std::endl;
     return 2;
   }
