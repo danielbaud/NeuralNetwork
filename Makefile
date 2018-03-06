@@ -16,3 +16,11 @@ create:
 .PHONY: clean
 clean:
 	$(RM) $(TRASH)
+
+.PHONY: install
+install:
+	make -s create
+	make -s run
+	sudo mv create /bin/anncreate
+	sudo mv run /bin/annrun
+	make -s clean
