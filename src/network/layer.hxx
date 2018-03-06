@@ -13,6 +13,7 @@ void Layer::update(const Layer& prev)
     neurons[i].set_val(0);
     for (size_t j = 0; j < prev.size(); ++j)
       neurons[i].add_sum(prev[j].get_val()*neurons[i][j]);
+    neurons[i].add_sum(neurons[i].bias);
     neurons[i].activate();
   }
 }
@@ -30,7 +31,13 @@ void Layer::updateE(const Layer& next)
 void Layer::updateS(const Layer& prev)
 {
   for (size_t i = 0; i < neurons.size(); ++i)
+  {
     for (size_t j = 0; j < prev.size(); ++j)
+    {
       neurons[i][j] += neurons[i].get_delta() * ATOM * prev[j].get_val()
         * activation_d(neurons[i].get_sum());
+    }
+    neurons[i].bias += neurons[i].get_delta() * ATOM
+      * activation_d(neurons[i].get_sum());
+  }
 }

@@ -3,6 +3,7 @@
 Neuron::Neuron(size_t nb_synapses) : delta(0), val(0), sum(0)
 {
   srand(time(NULL));
+  bias = ((double)rand() / RAND_MAX) * 2 * SYN - SYN;
   synapses = std::vector<double>(nb_synapses);
   for (size_t i = 0; i < nb_synapses; ++i)
   {
@@ -103,6 +104,6 @@ void Neuron::add_delta(double x)
 std::ostream& operator<<(std::ostream& out, Neuron n)
 {
   out << "[[sum: "<< n.sum << ", val: " << n.val << ", delta: " 
-    << n.delta << "]] ";
+    << n.delta << ", bias: " << n.bias << "]] ";
   return out;
 }

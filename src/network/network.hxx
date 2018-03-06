@@ -29,8 +29,11 @@ Network::Network(const std::string& path)
   }
   for (size_t i = 1; i < layers.size(); ++i)
     for (size_t j = 0; j < layers[i].size(); ++j)
+    {
+      s >> layers[i][j].bias;;
       for (size_t k = 0; k < layers[i][j].size(); ++k)
 	s >> layers[i][j][k];
+    }
   s.close();
 }
 
@@ -115,7 +118,10 @@ void Network::save(const std::string& path)
   s << '0' << std::endl;
   for (size_t i = 1; i < layers.size(); ++i)
     for (size_t j = 0; j < layers[i].size(); ++j)
+    {
+      s << layers[i][j].bias << std::endl;
       for (size_t k = 0; k < layers[i][j].size(); ++k)
 	s << layers[i][j][k] << std::endl;
+    }
   s.close();
 }

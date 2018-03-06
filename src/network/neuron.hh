@@ -42,12 +42,15 @@ namespace NeuralNetwork
 
     void add_delta(double x);
     void add_sum(double x);
+
     double& operator[](size_t i) { return synapses[i]; }
     const double& operator[](size_t i ) const { return synapses[i]; }
-    
+
     size_t size() const { return synapses.size(); }
 
     friend std::ostream& operator<<(std::ostream& out, Neuron n);
+
+    double bias;
 
   private:
 

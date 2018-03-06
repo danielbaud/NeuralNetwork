@@ -17,14 +17,13 @@ namespace NeuralNetwork
     void updateS(const Layer& prev);
 
     size_t size() const { return neurons.size(); }
-  
+
     Neuron& operator[](size_t i) { return neurons[i]; }
     const Neuron& operator[](size_t i) const { return neurons[i]; }
 
   private:
 
     std::vector<Neuron> neurons;
-
   };
 
   #include "layer.hxx"
