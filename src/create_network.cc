@@ -38,10 +38,30 @@ int main(int argc, char **argv)
   // Usage Verification
   if (argc != 2)
   {
-    std::cerr << "Usage: " << argv[0] << " config_file" << std::endl;
+    std::cerr << "Usage: " << argv[0] << " config_file | -l" << std::endl;
     return 1;
   }
 
+  if (argv[1][0] == '-')
+  {
+    if (argv[1][1] == 'l' && !argv[1][2])
+    {
+      system("ls /home/daniel/.ann");
+      return 0;
+    }
+    if (argv[1][1] == 'R')
+    {
+      char temp[256] = "rm -f /home/daniel/.ann/";
+      size_t i = 2;
+      for (; argv[1][i]; ++i)
+	temp[22+i] = argv[1][i];
+      temp[22+i] = 0;
+      system(temp);
+      return 0;
+    }
+    std::cerr << argv[0] << ": Unknown option " << argv[1] << std::endl;
+    return 1;
+  }
   // Config file verification
   std::ifstream f(argv[1]);
   if (!f.is_open())
@@ -54,6 +74,8 @@ int main(int argc, char **argv)
 
   std::string ann;
   f >> ann;
+
+  ann = "/home/daniel/.ann/" + ann;
 
   std::vector<size_t> init;
   size_t i = 0;
@@ -83,6 +105,7 @@ int main(int argc, char **argv)
   else
   {
     auto N = NeuralNetwork::Network(init);
+    std::cout << ann << std::endl;
     N.save(ann);
   }
 
@@ -112,9 +135,12 @@ int main(int argc, char **argv)
   --cpt;
   f.close();
 
-  print(in);
-  std::cout << "----------" << std::endl;
-  print(out);
+
+/* DEBUG PRINTING INPUT */
+//  print(in);
+//  std::cout << "----------" << std::endl;
+//  print(out);
+
 
   // Training the network
   std::signal(SIGINT, sig);

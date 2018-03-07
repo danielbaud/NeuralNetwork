@@ -11,7 +11,7 @@ int main(int argc, char **argv)
   if (argc == 1)
   {
     std::cerr << "Usage: " << argv[0]
-              << " runfile  OR  " << argv[0] << " network.ann x1 x2 .. xn"
+              << " runfile  OR  " << argv[0] << " network x1 x2 .. xn"
               << std::endl;
     return 2;
   }
@@ -25,6 +25,7 @@ int main(int argc, char **argv)
     }
     std::string ann;
     f >> ann;
+    ann = "/home/daniel/.ann/" + ann;
     auto N = NeuralNetwork::Network(ann);
     std::vector<double> r(N[0].size());
     for (size_t i = 0; i < N[0].size(); ++i)
@@ -41,7 +42,10 @@ int main(int argc, char **argv)
     }
     return 0;
   }
-  auto N = NeuralNetwork::Network(argv[1]);
+  std::string path = "/home/daniel/.ann/";
+  for (size_t i = 0; argv[1][i]; ++i)
+    path += argv[1][i];
+  auto N = NeuralNetwork::Network(path);
   if (argc != (int)N[0].size() + 2)
   {
     std::cerr << "Number of arguments is not correct" << std::endl;
