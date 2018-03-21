@@ -46,16 +46,16 @@ int main(int argc, char **argv)
   {
     if (argv[1][1] == 'l' && !argv[1][2])
     {
-      system("ls /home/daniel/.ann");
+      system("ls /home/daniel/.ann/nets");
       return 0;
     }
     if (argv[1][1] == 'R')
     {
-      char temp[256] = "rm -f /home/daniel/.ann/";
+      char temp[256] = "rm -f /home/daniel/.ann/nets/";
       size_t i = 2;
       for (; argv[1][i]; ++i)
-	temp[22+i] = argv[1][i];
-      temp[22+i] = 0;
+	temp[27+i] = argv[1][i];
+      temp[27+i] = 0;
       system(temp);
       return 0;
     }
@@ -75,7 +75,7 @@ int main(int argc, char **argv)
   std::string ann;
   f >> ann;
 
-  ann = "/home/daniel/.ann/" + ann;
+  ann = "/home/daniel/.ann/nets/" + ann;
 
   std::vector<size_t> init;
   size_t i = 0;
@@ -146,20 +146,19 @@ int main(int argc, char **argv)
   std::signal(SIGINT, sig);
   std::signal(SIGTSTP, sig);
 
-  size_t pr = 0;
   std::vector<double> errors(cpt);
+  double err = 0;
   do
   {
     for (size_t k = 0; k < cpt; ++k)
     {
       N.learn(in[k], out[k]);
       errors[k] = N.error();
-      if (!(pr % 1000))
-        std::cout << k + 1 << "|" << errors[k] << " ";
+      err += N.error();
     }
-    if (!(pr % 1000))
-      std::cout << std::endl;
-    ++pr;
+    err /= (double)cpt;
+    std::cout << "MID COST = " << err << " (" << err / (double)out[0].size()
+              << " per output neuron)" << std::endl;
   } while (!ok(errors) && !stop);
 
   N.save(ann);
