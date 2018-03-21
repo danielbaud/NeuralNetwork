@@ -25,7 +25,7 @@ int main(int argc, char **argv)
     }
     std::string ann;
     f >> ann;
-    ann = "/home/daniel/.ann/" + ann;
+    ann = "/home/daniel/.ann/nets/" + ann;
     auto N = NeuralNetwork::Network(ann);
     std::vector<double> r(N[0].size());
     for (size_t i = 0; i < N[0].size(); ++i)
@@ -42,7 +42,7 @@ int main(int argc, char **argv)
     }
     return 0;
   }
-  std::string path = "/home/daniel/.ann/";
+  std::string path = "/home/daniel/.ann/nets/";
   for (size_t i = 0; argv[1][i]; ++i)
     path += argv[1][i];
   auto N = NeuralNetwork::Network(path);
