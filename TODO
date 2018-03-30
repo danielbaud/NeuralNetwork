@@ -1,11 +1,11 @@
 === TODO ===
 
-implement bias
-test which activation function works the best
-
+nothing?
 
 === DONE ===
 
+sigmoid is better
+bias
 neuron
 layer
 network
