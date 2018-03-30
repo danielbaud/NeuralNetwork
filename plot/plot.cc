@@ -26,9 +26,9 @@ bool ok(std::vector<double> v)
 int main(int argc, char **argv)
 {
   // Usage Verification
-  if (argc != 2)
+  if (argc != 3)
   {
-    std::cerr << "Usage: " << argv[0] << " config_file" << std::endl;
+    std::cerr << "Usage: " << argv[0] << " config_file step" << std::endl;
     return 1;
   }
 
@@ -40,6 +40,11 @@ int main(int argc, char **argv)
               << ". Stopping program" << std::endl;
     return 2;
   }
+
+
+  // step obtention
+
+  size_t step = atoi(argv[2]);
   // Consistency verification/Creation
 
   std::string ann;
@@ -130,7 +135,7 @@ int main(int argc, char **argv)
       N.learn(in[k], out[k]);
       errors[k] = N.error();
     }
-    if (bcl % 1000 == 0)
+    if (bcl % step == 0)
     {
       std::ofstream fx("/home/daniel/.ann/func");
       for (double x = 0; x <= 1; x += 0.01)
