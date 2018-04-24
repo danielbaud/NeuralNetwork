@@ -32,6 +32,18 @@ bool ok(std::vector<double> v)
   return true;
 }
 
+template <typename T>
+T max(std::vector<T> v)
+{
+  T ret = 0;
+  for (T e : v)
+  {
+    if (e > ret)
+      ret = e;
+  }
+  return ret;
+}
+
 
 int main(int argc, char **argv)
 {
@@ -157,8 +169,9 @@ int main(int argc, char **argv)
       err += N.error();
     }
     err /= (double)cpt;
-    std::cout << "MID COST = " << err << " (" << err / (double)out[0].size()
-              << " per output neuron)" << std::endl;
+    std::cout << "MID COST = " << err << " (" << max(errors)
+              << " worst case error)" << std::endl;
+    err = 0;
   } while (!ok(errors) && !stop);
 
   N.save(ann);
